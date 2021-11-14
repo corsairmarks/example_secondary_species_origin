@@ -1,6 +1,8 @@
 # set up starting pops - called by my_mod_name.1
 # this = planet, capital
 generate_origin_my_mod_name_example_start_pops = {
+	# logging that will appear in game.log - this can be removed
+	log = "generate_origin_my_mod_name_example_start_pops on \\[This.GetName] for \\[This.Owner.GetRealName]"
 	# spawn a set number of main species Pops
 	while = {
 		count = 6 # change this number to control how many main species Pops are spawned
