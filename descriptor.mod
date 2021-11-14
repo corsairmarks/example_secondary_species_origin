@@ -1,9 +1,9 @@
-name="TODO: Mod Template"
+name="My Mod Name"
 dependencies={
-	"TODO: Dependency"
+	"Another Mod Name That Must Load Before This One"
 }
 tags={
-	"Tag"
+	"Utilities"
 }
 version="1.0.0"
 picture="thumbnail.png"
