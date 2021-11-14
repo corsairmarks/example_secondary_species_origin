@@ -22,4 +22,10 @@ generate_origin_my_mod_name_example_start_pops = {
 			ethos = random
 		}
 	}
+	# CAUTION: if your origin allows Machine Intelligences, you should consider explicitly disallowing the
+	# Driven Assimilator and Rogue Servitor civics that also are eligible for a secondary species.  If not, you
+	# may need to reimplement code from the default "generate_start_pops" effect related to their custom setup.
+	# This also applies when you create any features that replace default Pop setup - you'll need to reimplement
+	# a compatible version of Pop spawning code for any secondary species civics/origins that your mod allows the
+	# player to combine with your new features.
 }
