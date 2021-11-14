@@ -5,7 +5,21 @@ generate_origin_my_mod_name_example_start_pops = {
 	log = "generate_origin_my_mod_name_example_start_pops on \\[This.GetName] for \\[This.Owner.GetRealName]"
 	# spawn a set number of main species Pops
 	while = {
-		count = 6 # change this number to control how many main species Pops are spawned
+		count = 16 # change this number to control how many main species Pops are spawned
+		# default Pop counts (last verified for 3.1.2 "Lem"):
+		# 16 for Syncretic Evolution or regular, non-genocidal Necrophage; 12 secondary (28 total)
+		# 24 for Hive Mind non-genocidal Necrophages; 9 secondary (33 total)
+		# 24 for regular genocidal Necrophages; 6 secondary (30 total)
+		# 29 for Hive Mind genocidal Necrophages; 6 secondary (35 total)
+		# 20 for Mechanists; 8 secondary (28 total)
+		# 19 for Driven Assimilators; 10 secondary (29 total)
+		# 28 for Rogue Servitors; 5 secondary (33 total)
+		# +4 for Prosperous Unification (DA and RS are civics, and can thus be combined with this origin to get the 4 bonus main species Pops)
+		# default Pop counts for origins/civics with primary species only (i.e. most of them):
+		# 28 for regular empires
+		# 33 for Hive Minds
+		# 29 for Machines
+		# +4 for Prosperous Unification
 		create_pop = {
 			species = owner_main_species
 			ethos = random
