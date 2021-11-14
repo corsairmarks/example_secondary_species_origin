@@ -1,0 +1,32 @@
+origin_my_mod_name_example = {
+	is_origin = yes
+	icon = gfx/interface/icons/origins/origins_default.dds
+	picture = GFX_origin_default
+	playable = { has_utopia = yes }
+	ai_playable = { has_utopia = yes }
+	potential = { ethics = { NOT = { value = ethic_gestalt_consciousness } } }
+	possible = {
+		civics = {
+			NOR = {
+				value = civic_fanatic_purifiers
+				value = civic_agrarian_idyll
+			}
+		}
+		ethics = {
+			OR = {
+				value = ethic_xenophobe
+				value = ethic_fanatic_xenophobe
+			}
+		}
+	}
+	random_weight = {
+		base = 0
+		modifier = {
+			factor = 0
+		}
+	}
+	description = origin_my_mod_name_example_effects
+	has_secondary_species = {
+		title = origin_my_mod_name_example_secondary_species
+	}
+}

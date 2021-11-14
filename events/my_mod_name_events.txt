@@ -1,0 +1,97 @@
+namespace = my_mod_name
+
+# flag mod as active - this is considered polite in the modding community, and will let other mods check if yours is installed
+# triggered by on_game_start and on_single_player_save_game_load
+event = {
+	id = my_mod_name.13 # 13 is my favoiurite number, you don't have to use it
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = my_mod_name_installed }
+	}
+	immediate = {
+		set_global_flag = my_mod_name_installed
+	}
+}
+
+# example event that is called by an espcially "early" on_action in common/on_actions/000_my_mod_name_early_on_actions.txt
+# this event can be repurposed for any reason you might want to disable custom capital planet setup for an empire
+# triggered by empire_init_capital_planet
+# root = planet, capital
+# from = species, founder
+planet_event = {
+	id = my_mod_name.1
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = {
+		has_owner = yes
+	}
+	trigger = {
+		owner = { has_origin = origin_my_mod_name_example }
+	}
+	immediate = {
+		# disable default initialization - this is a magic flag that disables the built-in capital planet setup,
+		# and how we avoid spawning the default number of Pops for only the primary species
+		set_planet_flag = special_start_planet
+		# if you have a custom solar_system intializer for your origin (and the origin _must_ select one form your list),
+		# you can omit this event and its special on_action file and instead add "flags = { special_start_planet }"
+		# to the capital planet in the initialier's file
+	}
+}
+
+# example event to set up the capital planet of an empire with an origin that uses custom Pop spawning but the default blockers/buildings/districts
+# this type of event can be repurposed if you want an origin that spawns totally different planet features/blockers, buildings/districts, or something else
+# also you could use a civic or really anythign you want as the trigger block for this series of events
+# triggered by empire_init_capital_planet
+# root = planet, capital
+# from = species, main
+planet_event = {
+	id = my_mod_name.2
+	hide_window = yes
+	is_triggered_only = yes
+	pre_triggers = {
+		has_owner = yes
+	}
+	trigger = {
+		owner = { has_origin = origin_my_mod_name_example }
+	}
+	immediate = {
+		# this check for spawning Earth blockers is the same as built-in event game_start.12
+		if = {
+			limit = { 
+				has_planet_flag = planet_earth
+				owner = { 
+					NOR = {
+						has_origin = origin_shattered_ring		#setup in initializer 
+						has_origin = origin_remnants			#custom blockers
+					}
+				}
+			}
+			generate_earth_deposits_and_blockers = yes			# built-in game effect
+		}
+		else = {
+			generate_start_deposits_and_blockers = yes			# built-in game effect
+		}
+		generate_start_buildings_and_districts = yes			# built-in game effect
+		generate_origin_my_mod_name_example_start_pops = yes	# this is the custom Pop spawning effect in this mod's common/scripted_effects/my_mod_name_scripted_effects.txt file
+		generate_home_planet_final_pass = yes					# built-in game effect
+	}
+}
+
+# example event to add technologies to an empire as part of its origin
+# triggered by empire_init_add_technologies
+# root = country
+country_event = { 
+	id = my_mod_name.3
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		has_origin = origin_my_mod_name_example
+	}
+	immediate = {
+		# give the technologies you want here
+		give_technology = { tech = tech_genome_mapping		message = no }
+		give_technology = { tech = tech_vitality_boosters	message = no }
+		give_technology = { tech = tech_epigenetic_triggers	message = no }
+	}
+}

@@ -1,0 +1,10 @@
+# fired during empire initialization when starting a new game
+# THIS = planet, capital
+# FROM = species, founder
+empire_init_capital_planet = {
+	# do not remore the "000_" from the beginning of this file's name - it is critical to the fgile loading before the game's files
+	# because this file is named to load before the game's built-in on_actions file, events attached here will fire _before_ that game's built-in events
+	events = {
+		my_mod_name.1
+	}
+}

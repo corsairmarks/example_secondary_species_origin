@@ -1,0 +1,25 @@
+# set up starting pops - called by my_mod_name.1
+# this = planet, capital
+generate_origin_my_mod_name_example_start_pops = {
+	# spawn a set number of main species Pops
+	while = {
+		count = 6 # change this number to control how many main species Pops are spawned
+		create_pop = {
+			species = owner_main_species
+			ethos = random
+		}
+	}
+	# set the default secondary species flag and save an event_target - which can be used in the event after this effect executes
+	last_created_species = {
+		set_species_flag = syncretic_species@PREV.owner
+		save_event_target_as = secondary_species
+	}
+	# spawn secondary species Pops until we hit the maximum
+	while = {
+		limit = { num_pops < 28 } # change this number to change the total number of Pops spawned
+		create_pop = {
+			species = event_target:secondary_species
+			ethos = random
+		}
+	}
+}
