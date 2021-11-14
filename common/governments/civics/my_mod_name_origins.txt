@@ -1,10 +1,14 @@
 origin_my_mod_name_example = {
-	is_origin = yes
-	icon = gfx/interface/icons/origins/origins_default.dds
-	picture = GFX_origin_default
-	playable = { has_utopia = yes }
-	ai_playable = { has_utopia = yes }
+	is_origin = yes # remove this line if you want to make a civic instead - that's how Driven Assimilator and Rogue Servitor work
+	icon = gfx/interface/icons/origins/origins_default.dds # if you make a custom icon, you can remove this line - it points to the prosperous unification icon
+	picture = GFX_origin_default # if you make a custom origin picture (and gfx file), you can remove this line - it points to the prosperous unification picture
+	playable = { has_utopia = yes } # controls whether the player can pick this origin - this example is gated behind the Utopia DLC
+	ai_playable = { has_utopia = yes } # controls whether the AI can pick this origin - this example is gated behind the Utopia DLC
+	# be sure to alter the potential triggers to match your design goals
+	# this example limits to origin no non-gestalt empires
 	potential = { ethics = { NOT = { value = ethic_gestalt_consciousness } } }
+	# be sure to alter the possible triggers to match your design goals
+	# this example requires either xenophobe or fanatic xenophobe, and excludes agrarian idyll and fanatic purifiers
 	possible = {
 		civics = {
 			NOR = {
@@ -19,14 +23,16 @@ origin_my_mod_name_example = {
 			}
 		}
 	}
+	# this prevents the AI from randomizing this origin
 	random_weight = {
+		# if you want the AI to be able to play your origin, a base of 5 (and no modifiers) is common among the built-in origins
 		base = 0
 		modifier = {
 			factor = 0
 		}
 	}
-	description = origin_my_mod_name_example_effects
+	description = origin_my_mod_name_example_effects # the origin's custom description that shows in the origin selection screen
 	has_secondary_species = {
-		title = origin_my_mod_name_example_secondary_species
+		title = origin_my_mod_name_example_secondary_species # the title the customization screen shows, such as Syncrectic, Cyborg, or Prepatent
 	}
 }
